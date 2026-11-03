@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Shantanu Bhide, PhD, EIT | Evidence for water decisions</title>
+<title>Shantanu Bhide | Evidence for water decisions</title>
 <meta name="description" content="Water resources engineer and researcher. Models and decision tools for PFAS, salinization, flood and dam risk, and One Water infrastructure.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shantanu Bhide | Evidence for water decisions">
+<meta property="og:description" content="Models and decision tools that show how water quality, flood and dam risk, and infrastructure choices play out over decades.">
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f8f9;--sf:#fff;--tx:#16262e;--mu:#51636d;--ac:#0d6b80;--hi:#b9651b;--bd:#d3dfe4}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1b22;--sf:#12262f;--tx:#e6eff2;--mu:#93aab5;--ac:#5ec2d8;--hi:#e0a15a;--bd:#24404c}}
@@ -24,8 +27,25 @@ h1,h2{font-family:Georgia,"Times New Roman",serif;line-height:1.2;margin:0}
 h1{font-size:clamp(34px,6vw,50px);margin-bottom:12px}
 h2{font-size:28px;margin-bottom:8px}
 section+section{border-top:1px solid var(--bd)}
-.hero{display:grid;gap:32px;align-items:center;grid-template-columns:1.1fr .9fr}
-@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.ht{max-width:780px}
+.hstrip{margin-top:36px;display:grid;grid-template-columns:1.35fr 28px 1fr 28px 1.35fr;align-items:start;container-type:inline-size}
+.htile{margin:0;min-width:0}
+.hv{height:250px;height:calc((100cqw - 56px) * .2736);min-height:170px;border:1px solid var(--bd);border-radius:10px;overflow:hidden;background:var(--sf)}
+.hv img{display:block;width:100%;height:100%;object-fit:cover}
+.hv.two{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr);gap:2px;background:var(--bd)}
+.hv.card{display:flex;align-items:center;justify-content:center;padding:8px 10px}
+.hv.card svg text{font-size:24px}
+.har{display:flex;align-items:center;justify-content:center;height:250px;height:calc((100cqw - 56px) * .2736);min-height:170px;color:var(--mu)}
+.har::before{content:"\2192";font-size:24px;line-height:1}
+.htile figcaption{margin-top:10px;font-size:14px;line-height:1.5;color:var(--mu)}
+.hst{display:block;font-family:Georgia,serif;font-size:19px;font-weight:600;color:var(--tx);margin-bottom:2px}
+@media(max-width:760px){
+.hstrip{grid-template-columns:1fr}
+.hv{height:auto;aspect-ratio:4/3;min-height:0}
+.har{height:34px;min-height:0}
+.hv.card svg text{font-size:15px}
+.har::before{content:"\2193"}
+}
 .sub{font-family:Georgia,serif;font-size:21px;color:var(--ac);margin:0 0 14px}
 .lead{font-size:18px;color:var(--mu);max-width:58ch;margin:0 0 14px}
 .intro{color:var(--mu);margin:0 0 20px;max-width:62ch}
@@ -36,6 +56,11 @@ section+section{border-top:1px solid var(--bd)}
 .ev .row{--c:200px}
 @media(max-width:640px){.row{grid-template-columns:1fr}}
 .row p{margin:0;color:var(--mu)}
+.ans{min-width:0}
+.pz{margin:16px 0 0;max-width:340px;background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:10px 14px 8px}
+.pzh{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--tx);margin:0 0 4px}
+.pzt{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);border:1px solid var(--bd);border-radius:999px;padding:1px 8px;font-weight:500}
+.pz svg text{font-size:13px}
 .k{font-weight:600}
 .k.q{font-family:Georgia,serif;font-size:18px;line-height:1.35}
 .d{display:block;font-size:14px;margin-top:6px;color:var(--ac)}
@@ -47,45 +72,49 @@ footer{padding:30px 20px;text-align:center;color:var(--mu);font-size:14px;border
 </style>
 </head>
 <body>
-<nav><div><a href="#problems">Problems I solve</a><a href="#evidence">Why trust the work</a><a href="#work">Selected work</a><a href="#collaborate">Working together</a><a href="#background">Background</a><a href="#contact">Contact</a></div></nav>
+<nav><div><a href="#problems">Problems I solve</a><a href="#evidence">Why trust the work</a><a href="#work">Selected work</a><a href="#collaborate">Working together</a><a href="#background">Background</a><a href="#publications">Publications</a><a href="#contact">Contact</a></div></nav>
 
-<section><div class="w hero">
-<div>
+<section><div class="w">
+<div class="ht">
 <h1>Evidence for water decisions that carry real risk</h1>
 <p class="sub">Shantanu Bhide, PhD, EIT. Water resources engineer and researcher.</p>
 <p class="lead">I build models and decision tools that show utilities, agencies and investors how water quality, flood and dam risk, and infrastructure choices will play out over decades, before the money is spent.</p>
 <a class="btn p" href="#problems">See the problems I solve</a><a class="btn" href="#contact">Get in touch</a>
 </div>
-<div>
+<div class="hstrip">
+<figure class="htile"><div class="hv two"><img src="img/field-laundry.jpg" width="520" height="780" alt="Shantanu Bhide setting up an automatic water sampler beside industrial washing machines"><img src="img/field-station.jpg" width="520" height="780" alt="Shantanu Bhide and two colleagues setting up an automatic water sampler in the field"></div><figcaption><span class="hst">Measure</span>Sampling sources in the field.</figcaption></figure>
+<div class="har" aria-hidden="true"></div>
+<figure class="htile"><div class="hv card">
 <svg viewBox="0 0 400 240" role="img" aria-label="A transit-time distribution: a curve that rises quickly and has a long tail, with the mean transit time marked.">
 <path d="M30 200 C55 198 70 50 105 48 C150 46 170 150 230 178 C290 198 340 198 380 199 L380 200 L30 200Z" fill="var(--ac)" fill-opacity=".18"/>
 <path d="M30 200 C55 198 70 50 105 48 C150 46 170 150 230 178 C290 198 340 198 380 199" fill="none" stroke="var(--ac)" stroke-width="3"/>
 <line x1="30" y1="200" x2="380" y2="200" stroke="var(--mu)"/>
 <line x1="165" y1="34" x2="165" y2="200" stroke="var(--hi)" stroke-width="2" stroke-dasharray="5 5"/>
 <text x="172" y="40">mean transit time</text>
-<text x="205" y="224" text-anchor="middle">water age: time since entering the system</text>
-</svg>
-<p class="cap">How long water takes to move through a watershed, reservoir or treatment system shapes the quality it delivers. Transit-time theory is the core of my research.</p>
+<text x="205" y="228" text-anchor="middle">water age (time in system)</text>
+</svg></div><figcaption><span class="hst">Model</span>Tracing how long water, and what it carries, takes to move through a system. <a href="occoquan-tool.html#key">Move the sliders yourself.</a></figcaption></figure>
+<div class="har" aria-hidden="true"></div>
+<figure class="htile"><div class="hv"><img src="img/workshop.jpg" width="960" height="720" alt="Shantanu Bhide presenting a systems model on a screen to a workshop in a meeting room"></div><figcaption><span class="hst">Decide</span>Working through the model with stakeholders.</figcaption></figure>
 </div>
 </div></section>
 
 <section id="problems"><div class="w">
 <h2>Problems I help solve</h2>
 <p class="intro">The questions below are the ones I’m asked most, with the methods I use and the work that backs them up.</p>
-<div class="row"><div class="k q">Where will PFAS and rising salt end up in our drinking water, and what should we do about it?</div><p>Transit-time models trace contaminants from their sources through watersheds, reservoirs and treatment, then test fixes against climate and growth scenarios through 2100.<span class="d">Evidence: Occoquan One Water model; Water Research, 2025</span></p></div>
-<div class="row"><div class="k q">Who or what is actually causing the contamination?</div><p>Source attribution built on long monitoring records and statistics. Reclaimed water dominated sodium loads in dry periods, and powder laundry detergents were a dominant household source of salt.<span class="d">Evidence: Nature Sustainability, 2021; detergent study under review</span></p></div>
-<div class="row"><div class="k q">What will climate and growth do to our water over the next 50 years?</div><p>Scenario tools built on more than 500 GB of climate projections that let planners change land use, population and climate assumptions in real time, in the room.<span class="d">Evidence: piloted with 40+ utility, agency and industry stakeholders</span></p></div>
-<div class="row"><div class="k q">Is this dam, levee or floodplain safe, and what are our options?</div><p>Hydrologic and hydraulic modeling for flood hazard, probable maximum precipitation, spillway and outlet-works evaluation, dam removal and reservoir risk.<span class="d">Evidence: practicing engineer in the Dams and Levees group at Geosyntec</span></p></div>
-<div class="row"><div class="k q">Which upgrade is worth the capital?</div><p>Side-by-side comparison of treatment and infrastructure options, with design parameters and cost estimates: nitrogen removal at a wastewater plant, drinking water treatment trains, reservoir water quality, and stormwater practices that handle road salt.<span class="d">Evidence: design projects at Virginia Tech; deicer transport study</span></p></div>
+<div class="row"><div class="k q">Where will PFAS and rising salt end up in our drinking water, and what should we do about it?</div><div class="ans"><p>Transit-time models trace contaminants from their sources through watersheds, reservoirs and treatment, then test fixes against climate and growth scenarios through 2100.<span class="d">Evidence: <a href="occoquan-tool.html">Occoquan One Water decision tools</a>; <i>Water Research</i>, 2025 and 2026</span></p><figure class="pz"><div class="pzh"><span>Concentration at the intake</span><span class="pzt">Illustrative</span></div><svg viewBox="0 0 300 154" role="img" aria-label="Schematic line chart: a concentration at a drinking water intake rises over time from 2025 to 2100 and crosses a dashed advisory level."><line x1="22" y1="20" x2="22" y2="128" stroke="var(--bd)"/><line x1="22" y1="128" x2="286" y2="128" stroke="var(--mu)"/><line x1="22" y1="78.0" x2="286" y2="78.0" stroke="var(--tx)" stroke-width="1.3" stroke-dasharray="6 4"/><path d="M22.0,93.0 L27.5,92.3 L33.0,91.5 L38.5,90.6 L44.0,89.8 L49.5,88.8 L55.0,87.9 L60.5,87.0 L66.0,86.0 L71.5,85.1 L77.0,84.1 L82.5,83.1 L88.0,82.1 L93.5,81.1 L99.0,80.1 L104.5,79.1 L110.0,78.1 L115.5,77.0 L121.0,76.0 L126.5,75.0 L132.0,73.9 L137.5,72.9 L143.0,71.8 L148.5,70.7 L154.0,69.7 L159.5,68.6 L165.0,67.5 L170.5,66.4 L176.0,65.4 L181.5,64.3 L187.0,63.2 L192.5,62.1 L198.0,61.0 L203.5,59.9 L209.0,58.8 L214.5,57.7 L220.0,56.6 L225.5,55.4 L231.0,54.3 L236.5,53.2 L242.0,52.1 L247.5,51.0 L253.0,49.8 L258.5,48.7 L264.0,47.6 L269.5,46.4 L275.0,45.3 L280.5,44.1 L286.0,43.0" fill="none" stroke="var(--ac)" stroke-width="2.6" stroke-linecap="round"/><circle cx="110.4" cy="78.0" r="4.5" fill="var(--ac)" stroke="var(--sf)" stroke-width="2"/><text x="284" y="95.0" text-anchor="end">advisory level</text><text x="22.0" y="146" text-anchor="middle">2025</text><text x="110.0" y="146" text-anchor="middle">2050</text><text x="198.0" y="146" text-anchor="middle">2075</text><text x="286.0" y="146" text-anchor="middle">2100</text></svg></figure></div></div>
+<div class="row"><div class="k q">Who or what is actually causing the contamination?</div><p>Source attribution built on long monitoring records and statistics. Reclaimed water dominated sodium loads in dry periods, and powder laundry detergents were a dominant household source of salt.<span class="d">Evidence: <i>Nature Sustainability</i>, 2021; <a href="#work">sewershed salt source study</a>; detergent study under review</span></p></div>
+<div class="row"><div class="k q">What will climate and growth do to our water over the next 50 years?</div><p>Scenario tools built on more than 500 GB of climate projections that let planners change land use, population and climate assumptions in real time, in the room.<span class="d">Evidence: <a href="occoquan-tool.html#used">used live in two stakeholder settings</a>, a regional committee meeting with 40+ participants and NSF-funded focus groups with 30+</span></p></div>
+<div class="row"><div class="k q">Is this dam, levee or floodplain safe, and what are our options?</div><div class="ans"><p>Hydrologic and hydraulic modeling for flood hazard, probable maximum precipitation, spillway and outlet-works evaluation, dam removal and reservoir risk.<span class="d">Evidence: practicing engineer in the Dams and Levees group at Geosyntec</span></p><figure class="pz"><div class="pzh"><span>Reservoir behind a dam</span><span class="pzt">Illustrative</span></div><svg viewBox="0 32 300 118" role="img" aria-label="Schematic cross-section of an embankment dam. The reservoir sits at its normal pool level and rises to a higher design-storm level just below the crest."><defs><marker id="upz" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--tx)"/></marker></defs><polygon points="140,140 170,50 190,50 244,140" fill="var(--bd)" stroke="var(--mu)" stroke-width="1.5"/><polygon points="16,140 16,62 166,62 140,140" fill="var(--ac)" fill-opacity=".14"/><polygon points="16,140 16,84 158.7,84 140,140" fill="var(--ac)" fill-opacity=".3"/><line x1="16" y1="62" x2="166" y2="62" stroke="var(--tx)" stroke-width="1.3" stroke-dasharray="6 4"/><line x1="16" y1="84" x2="158.7" y2="84" stroke="var(--ac)" stroke-width="2"/><line x1="10" y1="140" x2="290" y2="140" stroke="var(--mu)" stroke-width="1.5"/><line x1="62" y1="82" x2="62" y2="66" stroke="var(--tx)" stroke-width="1.6" marker-end="url(#upz)"/><text x="22" y="52">design-storm level</text><text x="72" y="78">rise</text><text x="22" y="112">normal pool</text><text x="198" y="46">crest</text></svg></figure></div></div>
+<div class="row"><div class="k q">Which upgrade is worth the capital?</div><div class="ans"><p>Side-by-side comparison of treatment and infrastructure options, with design parameters and cost estimates: nitrogen removal at a wastewater plant, drinking water treatment trains, reservoir water quality, and stormwater practices that handle road salt.<span class="d">Evidence: design projects at Virginia Tech; deicer transport study</span></p><figure class="pz"><div class="pzh"><span>Options on one cost scale</span><span class="pzt">Illustrative</span></div><svg viewBox="0 0 300 138" role="img" aria-label="Schematic bar chart comparing the estimated cost of three options on one shared scale."><text x="0" y="25">Option A</text><rect x="70" y="8" width="190" height="24" rx="4" fill="var(--ac)" fill-opacity=".7"><title>Option A: estimated cost on a shared scale (illustrative)</title></rect><text x="0" y="63">Option B</text><rect x="70" y="46" width="128" height="24" rx="4" fill="var(--ac)" fill-opacity=".7"><title>Option B: estimated cost on a shared scale (illustrative)</title></rect><text x="0" y="101">Option C</text><rect x="70" y="84" width="76" height="24" rx="4" fill="var(--ac)" fill-opacity=".7"><title>Option C: estimated cost on a shared scale (illustrative)</title></rect><line x1="70" y1="2" x2="70" y2="118" stroke="var(--mu)"/><text x="70" y="134">estimated cost, one shared scale</text></svg></figure></div></div>
 <div class="row"><div class="k q">How do utilities, agencies and communities agree on a plan?</div><p>Participatory models, workshops and focus groups that put one shared tool in front of decision-makers, grounded in common pool resource theory and training in science policy.<span class="d">Evidence: NSF-funded convergence research; workshops with elected officials, NGOs and developers</span></p></div>
 </div></section>
 
 <section id="evidence"><div class="w ev">
 <h2>Why you can trust the work</h2>
 <p class="intro">Methods and results that others have reviewed, funded and used.</p>
-<div class="row"><div class="k">Peer reviewed</div><p>13 publications in journals including Nature Sustainability, Water Research, Environmental Science &amp; Technology, Nature Reviews Earth &amp; Environment and Communications Earth &amp; Environment. Five more manuscripts are under review.</p></div>
-<div class="row"><div class="k">Independently funded</div><p>Research supported by the National Science Foundation and the Water Research Foundation, including a Co-PI role on an NSF grant and senior personnel on the $679,000 OnePFAS project.</p></div>
-<div class="row"><div class="k">Used by decision-makers</div><p>Models piloted with more than 40 stakeholders from utilities, regulators, industry and NGOs, alongside a science partnership with the Metropolitan Washington Council of Governments.</p></div>
+<div class="row"><div class="k">Peer reviewed</div><p>14 published papers in journals including Nature Sustainability, Water Research, Environmental Science &amp; Technology, Nature Reviews Earth &amp; Environment and Communications Earth &amp; Environment. One more is accepted at Nature Water and four manuscripts are under review. <a href="publications.html">See the full list.</a></p></div>
+<div class="row"><div class="k">Independently funded</div><p>Research supported by the National Science Foundation and the Water Research Foundation, including a Co-PI role on an NSF planning grant and researcher roles on two Water Research Foundation projects, among them the $679,000 OnePFAS project.</p></div>
+<div class="row"><div class="k">Used by decision-makers</div><p>Two decision tools used live in stakeholder settings: a regional committee meeting with more than 40 participants, and NSF-funded focus groups with more than 30 stakeholders from utilities, regulators, local governments and NGOs. Also a science partnership with the Metropolitan Washington Council of Governments.</p></div>
 <div class="row"><div class="k">Recognized by the water community</div><p>Scholarships from the AWWA Virginia Section and the Virginia Water Environment Association, and the Thomas J. Grizzard Jr. Graduate Fellowship.</p></div>
 <div class="row"><div class="k">Trained across disciplines</div><p>PhD in Civil Engineering, MS in Environmental Engineering and a diploma in Science Policy, all from Virginia Tech. Engineer in Training (EIT).</p></div>
 <div class="row"><div class="k">Practiced in the field</div><p>I apply the same rigor to dam safety and flood hazard work at Geosyntec, including probable maximum precipitation and rain-on-snow analyses.</p></div>
@@ -93,8 +122,9 @@ footer{padding:30px 20px;text-align:center;color:var(--mu);font-size:14px;border
 
 <section id="work"><div class="w">
 <h2>Selected work</h2>
-<p class="intro">Four projects, each framed as a problem, an approach and a result.</p>
-<div class="row"><div class="k">Occoquan One Water decision tool</div><p><b>The problem.</b> A reservoir serving a large region faced rising sodium and emerging PFAS, with many agencies and no shared way to test fixes.<br><b>What I did.</b> Built a fast, interactive model linking watershed hydrology, reservoir water balance and solute transport.<br><b>What it showed.</b> Sodium and PFAS trajectories through 2100 under climate, land-use and growth scenarios, and which sources to target and where to sample.</p></div>
+<p class="intro">Five projects, each framed as a problem, an approach and a result.</p>
+<div class="row"><div class="k"><a href="occoquan-tool.html">Occoquan One Water decision tools</a></div><p><b>The problem.</b> A drinking water reservoir fed by treated wastewater and a growing watershed faced rising sodium and emerging contaminants such as PFAS, with many agencies and no shared way to test fixes.<br><b>What I did.</b> Built two interactive models for stakeholder meetings: a long-term futures model that carries sodium through the watershed, reservoir and drinking water intake using transit times, and a water-balance model for stress-testing supply.<br><b>What it enabled.</b> Exploring 26,244 possible futures through 2100 in a live meeting, and testing supply under drought, growth and reclaimed water limits. The approach is built to extend to PFAS.<span class="d"><a href="occoquan-tool.html">Read the case study and try the interactive models</a></span></p></div>
+<div class="row"><div class="k">Salts in our wastewater: a multi-source assessment and per-capita generation across urban landscapes</div><p><b>The problem.</b> Treated wastewater is a major sodium source for a drinking water reservoir, but it was not clear how much salt comes from households, industries, data centers, the drinking water supply and groundwater leaking into sewers.<br><b>What I did.</b> Designed and ran intensive monitoring campaigns across jurisdictions, from a neighborhood of about 1,000 people to a sewershed serving roughly 350,000, and used flow and concentration data to split sodium loads among those sources.<br><b>What it enabled.</b> A transferable way to benchmark per-capita sodium generation and to prioritize interventions such as pretreatment, discharge controls and social marketing. Results are preliminary.</p></div>
 <div class="row"><div class="k">Salt in a potable reuse reservoir</div><p><b>The problem.</b> Treated wastewater supplies a drinking water reservoir that is getting saltier.<br><b>What I did.</b> Applied copula-based probability analysis to 25 years of monitoring data.<br><b>What it showed.</b> Reclaimed water dominates salt loading in dry periods, which shapes treatment alternatives and regional water security planning.</p></div>
 <div class="row"><div class="k">Deicers and green stormwater infrastructure</div><p><b>The problem.</b> Stormwater practices meant to protect streams can pass road salt downstream.<br><b>What I did.</b> Built a hydrologic and transit-time model on more than 20 years of hourly climate data.<br><b>What it showed.</b> Unintended consequences of current designs, and modifications that capture first-flush deicers.</p></div>
 <div class="row"><div class="k">Radon-222 in sewers</div><p><b>The problem.</b> Groundwater infiltration into sewers is hard to measure.<br><b>What I did.</b> Measured air-phase radon in manholes and built a model to estimate infiltration.<br><b>What it showed.</b> Radon above the EPA indoor criterion and a strong daily pattern that could guide safer timing for maintenance crews.</p></div>
@@ -120,12 +150,12 @@ footer{padding:30px 20px;text-align:center;color:var(--mu);font-size:14px;border
 
 <section id="publications"><div class="w pub">
 <h2>Selected publications</h2>
-<div class="row"><div class="k">2026</div><p><b>Transit time modeling framework for predicting freshwater salinization in urban catchments.</b> <i>Water Research.</i> Bhide and Grant, co-first authors.</p></div>
+<div class="row"><div class="k">2026</div><p><b><a href="https://doi.org/10.1016/j.watres.2026.125692">Transit time modeling framework for predicting freshwater salinization in urban catchments.</a></b> <i>Water Research.</i> Bhide and Grant, co-first authors.</p></div>
 <div class="row"><div class="k">2026</div><p><b>Social-ecological-technological drivers of freshwater salinization in the Occoquan Reservoir, United States.</b> <i>Communications Earth &amp; Environment.</i> Grant and Bhide, co-first authors.</p></div>
-<div class="row"><div class="k">2025</div><p><b>Transit times link pollution sources to drinking water quality in a One Water system.</b> <i>Water Research.</i> Bhide and Grant, co-first authors.</p></div>
+<div class="row"><div class="k">2025</div><p><b><a href="https://www.sciencedirect.com/science/article/pii/S0043135425015556">Transit times link pollution sources to drinking water quality in a One Water system.</a></b> <i>Water Research.</i> Bhide and Grant, co-first authors.</p></div>
 <div class="row"><div class="k">2025</div><p><b>Ion clusters reveal the sources, impacts, and drivers of freshwater salinization.</b> Marin et al. <i>Environmental Science &amp; Technology.</i></p></div>
 <div class="row"><div class="k">2021</div><p><b>Addressing the contribution of indirect potable reuse to inland freshwater salinization.</b> Bhide et al. <i>Nature Sustainability.</i></p></div>
-<p class="cap">The full list is on <a href="https://scholar.google.com/citations?hl=en&amp;user=rlnBNqIAAAAJ&amp;view_op=list_works&amp;authuser=1&amp;sortby=pubdate">Google Scholar</a>.</p>
+<a class="btn p" href="publications.html">All papers, posters and presentations</a><a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=rlnBNqIAAAAJ&amp;view_op=list_works&amp;authuser=1&amp;sortby=pubdate">Google Scholar</a>
 </div></section>
 
 <section id="contact"><div class="w">

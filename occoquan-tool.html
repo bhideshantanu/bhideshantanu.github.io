@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Occoquan One Water decision tools | Shantanu Bhide</title>
+<meta name="description" content="A fast transit-time model that links pollution sources to drinking water quality, built into interactive tools that let utilities, regulators and communities explore choices together.">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f8f9;--sf:#fff;--tx:#16262e;--mu:#51636d;--ac:#0d6b80;--hi:#b9651b;--bd:#d3dfe4}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1b22;--sf:#12262f;--tx:#e6eff2;--mu:#93aab5;--ac:#5ec2d8;--hi:#e0a15a;--bd:#24404c}}
+:root[data-theme="dark"]{--bg:#0c1b22;--sf:#12262f;--tx:#e6eff2;--mu:#93aab5;--ac:#5ec2d8;--hi:#e0a15a;--bd:#24404c}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 56px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sf)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--sf);border-bottom:1px solid var(--bd)}
+nav div{max-width:920px;margin:0 auto;padding:0 20px;display:flex;gap:22px;overflow-x:auto;white-space:nowrap}
+nav a{padding:15px 0;color:var(--mu);text-decoration:none;font-size:15px}
+nav a:hover{color:var(--ac)}
+a{color:var(--ac)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+.w{max-width:920px;margin:0 auto;padding:44px 20px}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.2;margin:0}
+h1{font-size:clamp(32px,6vw,46px);margin-bottom:12px}
+h2{font-size:26px;margin-bottom:12px}
+h3{font-size:17px;margin-bottom:4px}
+section+section{border-top:1px solid var(--bd)}
+p{margin:0 0 12px;color:var(--mu)}
+.lead{font-size:19px;max-width:62ch}
+.meta,.two{display:grid;gap:14px 28px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.meta{margin-top:20px}
+.meta b{display:block;color:var(--tx);font-size:14px}
+.meta span{color:var(--mu);font-size:15px}
+.mod{border-left:3px solid var(--ac);padding:2px 0 2px 14px}
+.mod p{margin:0 0 8px}
+.tool{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:18px;margin:14px 0}
+.grp h3{font-size:15px;color:var(--ac);margin:14px 0 8px}
+.q{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:0 0 8px}
+.q span{flex:0 0 100%;font-size:14px;color:var(--tx);font-weight:600}
+button{font:inherit;font-size:14px;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:5px 11px;cursor:pointer}
+button:hover{border-color:var(--ac)}
+button[aria-pressed="true"]{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+.bar{height:10px;border-radius:5px;background:var(--bd);overflow:hidden;margin:6px 0 8px}
+.bar i{display:block;height:100%;background:var(--ac);transition:width .25s}
+.big{font-family:Georgia,serif;font-size:34px;color:var(--ac);line-height:1.1}
+.acts{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+.note{font-size:14px;margin:10px 0 0}
+.tag{display:inline-block;font-size:13px;color:var(--hi);border:1px solid var(--hi);border-radius:4px;padding:1px 8px;margin-bottom:8px}
+svg{width:100%;height:auto;display:block}
+svg text{fill:var(--mu);font-size:11px}
+.lg{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:13px;color:var(--mu);margin-top:6px}
+.lg i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.sl{display:grid;gap:10px 22px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:12px 0}
+.sl label{display:block;font-size:14px;color:var(--tx)}
+.sl output{float:right;color:var(--ac);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--ac)}
+.cols{display:grid;gap:18px 30px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:14px}
+.cols h3,.pair h3{font-size:15px}
+.r{display:grid;grid-template-columns:128px 1fr 54px;gap:8px;align-items:center;font-size:14px;margin:5px 0;color:var(--mu)}
+.r em{height:12px;border-radius:3px;background:var(--bd);display:block;overflow:hidden}
+.r em i{display:block;height:100%;background:var(--ac)}
+.r.o em i{background:var(--hi)}
+.r b{text-align:right;color:var(--tx);font-variant-numeric:tabular-nums;font-weight:600}
+.kp{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:14px}
+.kp div{border-top:2px solid var(--ac);padding-top:6px;font-size:13px;color:var(--mu)}
+.kp b{display:block;font-family:Georgia,serif;font-size:22px;color:var(--tx)}
+.pair{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.pts{display:grid;gap:14px 26px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin:16px 0}
+.pts div{border-top:2px solid var(--ac);padding-top:8px}
+.pts p{margin:0;font-size:15px}
+@media(max-width:600px){#c3 text,#plot text{font-size:16px}.dg text{font-size:17px}.dg .t{font-size:18px}.dg .rt{font-size:19px}}
+.dg{display:block;max-width:640px;margin:0 auto}
+.dg text{font-size:14px;fill:var(--mu)}
+.dg .t{fill:var(--tx);font-weight:600;font-size:16px}
+.dg .rt{fill:var(--tx);font-weight:600;font-size:17px}
+.dg .bx{fill:var(--sf);stroke:var(--bd);stroke-width:1.5}
+.dg .rs{fill:var(--ac);fill-opacity:.14;stroke:var(--ac);stroke-width:2}
+.dg .ln{stroke:var(--mu);stroke-width:2;fill:none}
+.dg .ah{fill:var(--mu)}
+hr{border:0;border-top:1px dashed var(--bd);margin:22px 0 16px}
+#warn{color:var(--hi);font-size:14px;min-height:21px;margin:10px 0 0}
+ul{margin:6px 0 12px;padding-left:20px;color:var(--mu)}
+li{margin:5px 0}
+footer{padding:30px 20px;text-align:center;color:var(--mu);font-size:14px;border-top:1px solid var(--bd)}
+</style>
+</head>
+<body>
+<nav><div><a href="index.html">Home</a><a href="index.html#work">All selected work</a><a href="#key">Transit-time model</a><a href="#futures">Model 1</a><a href="#supply">Model 2 and the vision</a><a href="#used">Use</a></div></nav>
+
+<section><div class="w">
+<h1>Occoquan One Water decision tools</h1>
+<p class="lead">A fast, physics-based model that links pollution sources to drinking water quality, built into interactive tools that let utilities, regulators and communities explore choices together.</p>
+<div class="meta">
+<div><b>My role</b><span>Co-first author of the published transit-time method; built the interactive tools; Co-PI on the NSF planning grant behind the web version</span></div>
+<div><b>Status</b><span>Method published in <i>Water Research</i>; tools are Mathematica proofs of concept used in two stakeholder settings</span></div>
+<div><b>Used with</b><span>Drinking water and wastewater utilities, regulators, local governments, NGOs and industry</span></div>
+</div>
+</div></section>
+
+<section><div class="w">
+<h2>The problem</h2>
+<p>The Occoquan system is one of the first "One Water" systems in the United States, where treated wastewater and urban stormwater are part of the raw water supply for up to one million people in Northern Virginia. That is what makes pollutants hard to manage here. Reclaimed water is discharged to a stream just above the drinking water reservoir, while the watershed around it keeps developing, so road salt, PFAS and other contaminants arrive by several routes and on different timescales. Different agencies manage each route, and none of them had a shared way to test choices together.</p>
+<figure style="margin:18px 0 8px">
+<svg class="dg" viewBox="0 0 600 420" role="img" aria-label="Diagram of a One Water system: runoff from a developing watershed and reclaimed water from a wastewater utility both flow through streams into the reservoir, which supplies a drinking water utility and flows over a dam to the Potomac River.">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="bx" x="10" y="10" width="270" height="90" rx="10"/>
+<text class="t" x="24" y="38">Developing watershed</text>
+<text x="24" y="62">Stormwater, road salt, PFAS</text>
+<text x="24" y="82">and other pollutants run off</text>
+<rect class="bx" x="320" y="10" width="270" height="90" rx="10"/>
+<text class="t" x="334" y="38">Wastewater utility</text>
+<text x="334" y="62">Treats sewage and discharges</text>
+<text x="334" y="82">reclaimed water to a stream</text>
+<line class="ln" x1="170" y1="100" x2="170" y2="166" marker-end="url(#ar)"/>
+<line class="ln" x1="430" y1="100" x2="430" y2="166" marker-end="url(#ar)"/>
+<text x="162" y="138" text-anchor="end">runoff, via streams</text>
+<text x="440" y="138">reclaimed water</text>
+<rect class="rs" x="100" y="170" width="400" height="90" rx="18"/>
+<text class="rt" x="300" y="202" text-anchor="middle">Occoquan Reservoir</text>
+<text x="300" y="226" text-anchor="middle">Both sources mix here; transit times set</text>
+<text x="300" y="244" text-anchor="middle">what reaches the drinking water intake</text>
+<line class="ln" x1="170" y1="260" x2="170" y2="326" marker-end="url(#ar)"/>
+<line class="ln" x1="430" y1="260" x2="430" y2="326" marker-end="url(#ar)"/>
+<text x="162" y="298" text-anchor="end">withdrawal</text>
+<text x="440" y="298">dam outflow</text>
+<rect class="bx" x="10" y="330" width="270" height="80" rx="10"/>
+<text class="t" x="24" y="358">Drinking water utility</text>
+<text x="24" y="382">Treats the water for up to</text>
+<text x="24" y="400">one million people</text>
+<rect class="bx" x="320" y="330" width="270" height="80" rx="10"/>
+<text class="t" x="334" y="358">Dam and Potomac River</text>
+<text x="334" y="382">Water continues downstream</text>
+<text x="334" y="400">to the Chesapeake Bay</text>
+</svg>
+<p class="note" style="text-align:center;margin:6px 0 0">In a One Water system, treated wastewater and stormwater are part of the raw water supply, so pollutants from both reach the same intake.</p>
+</figure>
+<p>Sodium is the long-running example. It has risen for four decades and now routinely exceeds the EPA health advisory for people on severely restricted sodium diets. The drinking water utility has looked at planning-level options such as a reverse osmosis upgrade that would likely cost more than $1 billion, before disposal and maintenance. Cutting pollution at its sources, such as road deicers and reclaimed water, may cost less. The tools below focus on sodium, and the approach is designed to extend to other pollutants such as PFAS.</p>
+</div></section>
+
+<section id="key"><div class="w">
+<h2>The key idea: transit times</h2>
+<p>Conventional pollutant transport models resolve flow and chemistry in fine detail, which makes them heavy to calibrate and too slow to run in a live meeting. Transit-time theory takes a different route. It tracks how long water spends travelling through the system, the transit time distribution, along with how much of each source enters over time. With those two ingredients you can calculate the concentration of a dissolved pollutant at the intake at any moment.</p>
+<div class="pts">
+<div><h3>One framework, many pollutants</h3><p>The same structure handles conservative salts such as sodium and chloride and, with a transformation rate, pollutants that react along the way.</p></div>
+<div><h3>Very few parameters</h3><p>The published version predicts sodium and chloride well with just two parameters, calibrated on 11 years of hydrologic and water quality data.</p></div>
+<div><h3>Fast enough for a live meeting</h3><p>In the live meeting, the watershed simulation through 2100, transit times included, ran in about two minutes or less, so stakeholders could change an assumption and see the answer in the room.</p></div>
+</div>
+<p>The tools on this page used an early version of the method. The refined versions are published at two scales, both in <i>Water Research</i>.</p>
+<div class="pair" style="margin:14px 0">
+<div class="mod"><h3>The catchment: an urban stream</h3><p>Applied to a deicer-impacted stream that drains to the reservoir. The model reproduces ten years of high-frequency salinity measurements and implies roughly one 20 kg bag of rock salt per person per year across the watershed's 20,000 residents. Stream water age emerges as a master variable: young snowmelt carries the highest chloride, while older groundwater sets an intermediate background level. <a href="https://doi.org/10.1016/j.watres.2026.125692">Read the 2026 paper</a>.</p></div>
+<div class="mod"><h3>The system: the reservoir</h3><p>Applied to the Occoquan Reservoir itself, linking pollution sources to drinking water quality in a One Water system. <a href="https://www.sciencedirect.com/science/article/pii/S0043135425015556">Read the 2025 paper</a>, which is open access.</p></div>
+</div>
+<div class="tool">
+<span class="tag">Interactive explainer</span>
+<h3>Change a source and see when the intake notices</h3>
+<div class="sl"><div><label for="tm">Average transit time <output id="tmo"></output></label><input type="range" id="tm" min="5" max="90" value="20"></div>
+<div><label for="kk">Flow pathways <output id="kko"></output></label><input type="range" id="kk" min="1" max="4" value="2"></div></div>
+<div class="pair"><div><h3>How long water spends in the system</h3><svg id="c1" role="img" aria-label="Distribution of transit times"></svg><div class="note" style="margin-top:2px">Days since entering the system</div></div>
+<div><h3>Share of a source change felt at the intake</h3><svg id="c2" role="img" aria-label="Share of a source change reaching the intake over time"></svg><div class="note" style="margin-top:2px">Days since the source changed</div></div></div>
+<p class="note" id="tr" aria-live="polite"></p>
+<p class="note">The curves are simple stand-ins to show the idea; the published model estimates them from data. Longer average transit times delay the response. Mixed pathways (a mix of fast and slow routes) produce an early first response and a long tail, which is why some pollutants keep arriving long after their source is shut off.</p>
+</div>
+</div></section>
+
+<section id="futures"><div class="w">
+<h2>Model 1: long-term futures</h2>
+<p>Built for a meeting of the regional stakeholder committee for the Occoquan system in November 2023. Nine choices about climate, growth, land use, reclaimed water, withdrawals and road salt drive three linked simulations: the watershed, the reservoir, and sodium at the drinking water intake, run daily through 2100, with transit times carrying the pollutant through each flow path. Pick options and watch the 26,244 possible futures narrow to one.</p>
+<div class="tool">
+<div class="big" id="cnt" aria-live="polite">26,244</div>
+<div id="lbl" style="color:var(--mu);font-size:15px">futures still to explore</div>
+<div class="bar"><i id="fill" style="width:100%"></i></div>
+<div id="steps"></div>
+<div class="acts"><button id="rnd">Pick for me</button><button id="rst">Reset</button></div>
+</div>
+<div class="tool">
+<span class="tag">Illustrative, not model results</span>
+<h3>Where does the sodium at the drinking water intake come from?</h3>
+<p class="note" style="margin:4px 0 8px">Responds to your reclaimed water, deicer rate, deicer area and wash-off choices; unchosen steps use middle options.</p>
+<div class="note" style="margin:0 0 2px">Sodium at the intake (mg/L)</div>
+<svg id="plot" viewBox="0 0 520 230" role="img" aria-label="Illustrative stacked area chart of sodium sources at the intake from 2025 to 2100, with EPA advisory levels at 20 and 30 milligrams per liter"></svg>
+<div class="lg" id="lg"></div>
+<p class="note">The dashed lines are EPA advisory levels: 30 mg/L for taste and 20 mg/L for people on severely sodium-restricted diets. Magnitudes here are placeholders chosen to show how the pieces behave: reclaimed water scales with plant output, road salt reaches the reservoir by fast and slow routes, and groundwater keeps releasing stored salt for decades. The full model simulates daily concentrations in mg/L.</p>
+</div>
+</div></section>
+
+<section id="supply"><div class="w">
+<h2>Model 2: stress-test the water supply</h2>
+<p>Built for focus groups under an NSF planning grant in December 2024. It mirrors the exercises: a rare-mussel flow minimum in Bull Run, drought effects on the drinking water plant, and growth at the wastewater reclamation facility. It uses the 2010 to 2021 average flows and the same rules the exercise describes. Try a preset, then move the sliders.</p>
+<div class="tool">
+<div class="acts" style="margin:0 0 6px"><button data-p="reset">2010 to 2021 averages</button><button data-p="drought">Severe drought (−75%)</button><button data-p="nouosa">Drought, no reclaimed water</button><button data-p="pop500">Wastewater service area at 500,000</button><button data-p="cap">Wastewater plant at its 72 MGD cap</button></div>
+<div class="sl" id="sl"></div>
+<div class="cols"><div id="inn"></div><div id="outt"></div></div>
+<div class="kp" id="kp"></div>
+<div id="warn" aria-live="polite"></div>
+<p class="note">Annual-average arithmetic with all flows in million gallons per day (MGD). The full model simulates daily pool elevation, which is where drawdown below the 86 ft and 80 ft intake levels shows up, and where low-flow days for the mussels appear.</p>
+<hr>
+<span class="tag">The vision</span>
+<h3>One model for water quantity and quality</h3>
+<p class="note" style="margin:4px 0 10px">The long-term idea is to couple this water-balance model with the transit-time model, so one tool simulates both how much water moves through the system and what it carries. Here is a first sketch: the flows above set how long water stays in the reservoir, and that sets how fast and how far sodium at the intake responds. Day 0 is when conditions change, for example when a drought begins. The dashed line is sodium at the intake today, and the curve shows it moving to its new level; the delay comes from how long water stays in the reservoir. Press the button below, pick a preset above, or move a slider to see it.</p>
+<div class="acts" style="margin:0 0 10px"><button data-p="drought">Try an example: a severe drought begins</button><button data-p="reset">Back to 2010 to 2021 averages</button></div>
+<div class="sl" id="sl2"></div>
+<div class="kp" id="qk"></div>
+<div class="note" style="margin:12px 0 2px">Sodium at the intake (mg/L)</div>
+<svg id="c3" role="img" aria-label="Sodium at the intake after the settings change"></svg>
+<div class="note" style="margin-top:2px">Days after conditions change (day 0 is when the change starts)</div>
+<p class="note">Concept demo, not model results. The reclaimed water (66 mg/L) and background (6.4 mg/L) values come from the project; the road salt input is a placeholder you can move. It assumes a well-mixed reservoir with an average residence time of about 20 days at average flow. The full model would use calibrated unsteady transit times and the daily flows.</p>
+</div>
+</div></section>
+
+<section id="used"><div class="w">
+<h2>How the models were used</h2>
+<ul>
+<li><b>Stakeholder committee meeting, November 2, 2023.</b> Participants split into nine small groups of about five. Each group worked through Model 1 on a laptop with a trained facilitator, who asked what they chose and why. The sessions were recorded to study how stakeholders make decisions with a model.</li>
+<li><b>NSF CIVIC focus groups, December 2024.</b> More than 30 stakeholders from utilities, regulators, local governments and NGOs tested Model 2 across four focus groups, working through three exercises.</li>
+<li><b>What came next.</b> Participants asked for finer spatial detail, customizable scenarios and cost and performance data for PFAS controls. Their feedback shaped a product requirements document, a move from desktop toward a web app, and a full-award proposal submitted to NSF in March 2025. Drinking water and wastewater utilities and a county government committed in writing to use and support the platform.</li>
+</ul>
+</div></section>
+
+<section id="next"><div class="w">
+<h2>Where this approach could go</h2>
+<p>The long-term goal is one model for the whole One Water system: the quantity of water and the quality it carries, across drinking water, wastewater and stormwater. These are applications the approach is built to support, not work already completed.</p>
+<ul>
+<li><b>PFAS and other emerging contaminants.</b> The planning grant scoped the same structure for PFAS scenarios and cost-performance data on mitigation.</li>
+<li><b>Source control versus treatment.</b> Putting upstream options next to a treatment upgrade, with costs, before capital is committed.</li>
+<li><b>Drought, growth and conservation planning.</b> Testing how sensitive supply and quality are to reclaimed water, demand and conservation choices.</li>
+<li><b>Policy and permit changes.</b> Exploring what a rule or guideline change would do across agencies before adopting it.</li>
+<li><b>Other systems and classrooms.</b> Any reservoir shared by several agencies, and teaching systems thinking in courses and community workshops.</li>
+</ul>
+<p>More of my work is on <a href="https://scholar.google.com/citations?hl=en&amp;user=rlnBNqIAAAAJ&amp;view_op=list_works&amp;authuser=1&amp;sortby=pubdate">Google Scholar</a>, and I’d like to hear about your system: <a href="index.html#contact">get in touch</a>.</p>
+</div></section>
+
+<footer>© 2026 Shantanu Bhide. Views are my own and do not represent my employer.</footer>
+
+<script>
+(function(){
+function $(i){return document.getElementById(i)}
+function fmt(n){return n.toLocaleString("en-US")}
+/* Erlang transit-time distribution: shape k, mean m (days). Returns [pdf, cdf] */
+function erl(k,m,t){var th=m/k,x=t/th,s=0,term=1,i,f=1;for(i=0;i<k;i++){if(i>0)term*=x/i;s+=term}
+ for(i=2;i<k;i++)f*=i;return [Math.pow(t,k-1)*Math.exp(-x)/(Math.pow(th,k)*f),1-Math.exp(-x)*s]}
+function tq(k,m,q){for(var t=0;t<800;t+=.25)if(erl(k,m,t)[1]>=q)return t;return 800}
+function chart(id,W,H,xs,ser,o){var L=40,R=8,T=8,B=8,X=function(v){return L+(W-L-R)*(v-o.x0)/(o.x1-o.x0)},Y=function(v){return T+(H-T-B-16)*(1-(v-o.y0)/(o.y1-o.y0))},s='';
+ (o.yt||[]).forEach(function(a){s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(a[0]).toFixed(1)+'" y2="'+Y(a[0]).toFixed(1)+'" stroke="var(--bd)"/><text x="'+(L-5)+'" y="'+(Y(a[0])+4).toFixed(1)+'" text-anchor="end">'+a[1]+'</text>'});
+ (o.xt||[]).forEach(function(v){s+='<text x="'+X(v)+'" y="'+(H-4)+'" text-anchor="'+(v===o.x0?'start':(v===o.x1?'end':'middle'))+'">'+v+'</text>'});
+ ser.forEach(function(se){var d='';xs.forEach(function(x,i){d+=(i?'L':'M')+X(x).toFixed(1)+' '+Y(se.y[i]).toFixed(1)});
+  if(se.fill)s+='<path d="'+d+'L'+X(xs[xs.length-1]).toFixed(1)+' '+Y(o.y0).toFixed(1)+'L'+X(xs[0]).toFixed(1)+' '+Y(o.y0).toFixed(1)+'Z" fill="'+se.col+'" fill-opacity=".2"/>';
+  s+='<path d="'+d+'" fill="none" stroke="'+se.col+'" stroke-width="2.5"'+(se.dash?' stroke-dasharray="5 4"':'')+'/>'});
+ var e=$(id);e.setAttribute("viewBox","0 0 "+W+" "+H);e.innerHTML=s}
+var AC="#0d6b80",HI="#c9742a",GR="#7f98a3";
+
+/* Transit-time explainer */
+function expl(){var m=+$("tm").value,k=+$("kk").value,xs=[],pd=[],cd=[],mx=0,t,r;
+ $("tmo").textContent=m+" days";$("kko").textContent=["very mixed","mixed","fairly uniform","uniform"][k-1];
+ for(t=0;t<=150;t++){r=erl(k,m,t);xs.push(t);pd.push(r[0]);cd.push(r[1]);if(r[0]>mx)mx=r[0]}
+ chart("c1",300,170,xs,[{y:pd,col:AC,fill:1}],{x0:0,x1:150,y0:0,y1:mx*1.1,xt:[0,50,100,150]});
+ chart("c2",300,170,xs,[{y:cd,col:HI}],{x0:0,x1:150,y0:0,y1:1,xt:[0,50,100,150],yt:[[0,"0%"],[.5,"50%"],[1,"100%"]]});
+ $("tr").textContent="If a source doubles today, half of that change reaches the intake after about "+Math.round(tq(k,m,.5))+" days, and 90% after about "+Math.round(tq(k,m,.9))+" days."}
+$("tm").addEventListener("input",expl);$("kk").addEventListener("input",expl);expl();
+
+/* Model 1 */
+var S=[
+{g:0,t:"Climate scenario",o:["Lower emissions (SSP1)","Intermediate (SSP2)","Higher emissions (SSP5)"]},
+{g:0,t:"Population growth",o:["Stops in 2023","Follows projections to 2040","Continues beyond 2100"]},
+{g:0,t:"New impervious area in low-density housing",o:["5%","20%","50%"]},
+{g:0,t:"New impervious area disconnected by green infrastructure",o:["1%","5%","10%"]},
+{g:1,t:"Reclaimed water from the wastewater utility",o:["None (counterfactual)","No increase, 34 MGD","Moderate, 53 MGD by 2100","Maximum, 72 MGD by 2100"]},
+{g:1,t:"Drinking water withdrawal by the drinking water utility",o:["Low, 70 MGD by 2100","Medium, 80 MGD","High, 90 MGD"]},
+{g:2,t:"Deicer application rate",o:["Low","Medium","High"]},
+{g:2,t:"Share of impervious area receiving deicers",o:["15%","30%","45%"]},
+{g:2,t:"Deicer wash-off coefficient",o:["0.12 per mm","0.15 per mm","0.18 per mm"]}];
+var G=["Watershed","Reservoir","Sodium"],pick=S.map(function(){return -1}),
+TOTAL=S.reduce(function(a,s){return a*s.o.length},1),box=$("steps");
+G.forEach(function(n,gi){var d=document.createElement("div");d.className="grp";d.innerHTML="<h3>Step "+(gi+1)+": "+n+" model</h3>";
+S.forEach(function(s,si){if(s.g!==gi)return;var q=document.createElement("div");q.className="q";q.innerHTML="<span>"+s.t+"</span>";
+s.o.forEach(function(l,oi){var b=document.createElement("button");b.type="button";b.textContent=l;b.setAttribute("aria-pressed","false");b.dataset.s=si;b.dataset.o=oi;
+b.addEventListener("click",function(){pick[si]=pick[si]===oi?-1:oi;draw()});q.appendChild(b)});d.appendChild(q)});box.appendChild(d)});
+var C=["#7f98a3","#1f8fa8","#c9742a","#e0a45c","#8a6bbf"],NM=["Watershed background","Reclaimed water","Road salt, direct runoff","Road salt, interflow","Road salt, groundwater"];
+$("lg").innerHTML=NM.map(function(n,i){return '<span><i style="background:'+C[i]+'"></i>'+n+'</span>'}).join("");
+function plot(){
+ var v=function(i,d){return pick[i]<0?d:pick[i]},uo=v(4,1),dr=v(6,1),ar=v(7,1),wo=v(8,1);
+ var U1=[0,34,53,72][uo],U0=uo?34:0,rate=[.7,1,1.4][dr],area=[15,30,45][ar]/30,kk=[.12,.15,.18][wo]/.15;
+ var D=15*rate*area,dir=.3*kk,gw=.35/kk,it=1-dir-gw,N=76,W=520,H=230,L=46,R=10,T=10,B=28,YM=60;
+ var X=function(t){return L+(W-L-R)*t/(N-1)},Y=function(a){return T+(H-T-B)*(1-a/YM)},cum=[];
+ for(var t=0;t<N;t++){var u=U0+(U1-U0)*t/(N-1),g=1+.003*t,p=[6.4*(1-u/547),66*u/547,D*dir*g,D*it*g,D*gw*g*(.6+.7*(1-Math.exp(-t/40)))],c=[0];
+ for(var k=0;k<5;k++)c.push(c[k]+p[k]);cum.push(c)}
+ var s='';[0,10,20,30,40,50,60].forEach(function(a){s+='<line x1="'+L+'" y1="'+Y(a).toFixed(1)+'" x2="'+(W-R)+'" y2="'+Y(a).toFixed(1)+'" stroke="var(--bd)"/><text x="'+(L-6)+'" y="'+(Y(a)+4).toFixed(1)+'" text-anchor="end">'+a+'</text>'});
+ for(var k=0;k<5;k++){var top="",bot="";for(var t=0;t<N;t++){top+=(t?"L":"M")+X(t).toFixed(1)+" "+Y(cum[t][k+1]).toFixed(1)}
+ for(var t=N-1;t>=0;t--)bot+="L"+X(t).toFixed(1)+" "+Y(cum[t][k]).toFixed(1);s+='<path d="'+top+bot+'Z" fill="'+C[k]+'" fill-opacity=".92"/>'}
+ [20,30].forEach(function(a){s+='<line x1="'+L+'" y1="'+Y(a).toFixed(1)+'" x2="'+(W-R)+'" y2="'+Y(a).toFixed(1)+'" stroke="var(--tx)" stroke-width="1.5" stroke-dasharray="6 4"/>'});
+ [0,25,50,75].forEach(function(t){s+='<text x="'+X(t)+'" y="'+(H-8)+'" text-anchor="'+(t===0?'start':(t===75?'end':'middle'))+'">'+(2025+t)+'</text>'});
+ $("plot").innerHTML=s}
+function draw(){var rem=1,done=0;S.forEach(function(s,i){if(pick[i]<0)rem*=s.o.length;else done++});
+ $("cnt").textContent=fmt(rem);
+ $("lbl").textContent=done===S.length?"future selected, one of "+fmt(TOTAL):(done?"futures still to explore ("+done+" of "+S.length+" choices made)":"futures still to explore");
+ $("fill").style.width=(rem===1?2:Math.max(2,100*Math.log(rem)/Math.log(TOTAL)))+"%";
+ Array.prototype.forEach.call(box.querySelectorAll("button"),function(b){b.setAttribute("aria-pressed",String(pick[+b.dataset.s]===+b.dataset.o))});plot()}
+$("rnd").addEventListener("click",function(){pick=S.map(function(s){return Math.floor(Math.random()*s.o.length)});draw()});
+$("rst").addEventListener("click",function(){pick=S.map(function(){return -1});draw()});
+draw();
+
+/* Model 2 (rules from the focus group handouts) plus the quality concept layer */
+var D0={bru:139,occ:261,oth:109,popU:351906,gU:70,ind:2.2,gG:80,crec:66,droad:15},ST=JSON.parse(JSON.stringify(D0)),II=.2,NRW=.2,POPG=668012,PREC=5,EVAP=6,IN0=546.99,WS0=509,U0m=32.99;
+var DEF=[["bru","Bull Run, upstream of the wastewater plant (MGD)",0,300,1,"sl"],["occ","Occoquan River (MGD)",0,500,1,"sl"],["oth","Other streams and groundwater (MGD)",0,250,1,"sl"],
+["popU","Wastewater service population",0,1000000,1,"sl"],["gU","Sewage per person per day (gallons)",40,100,1,"sl"],["ind","Industrial discharge to the wastewater plant (MGD)",0,5,.1,"sl"],["gG","Drinking water use per person per day (gallons)",50,120,1,"sl"],
+["crec","Sodium in reclaimed water (mg/L)",10,100,1,"sl2"],["droad","Sodium added to streams by road salt (mg/L)",0,40,1,"sl2"]],ctl={};
+DEF.forEach(function(d){var w=document.createElement("div");w.innerHTML='<label for="s_'+d[0]+'">'+d[1]+' <output id="o_'+d[0]+'"></output></label><input type="range" id="s_'+d[0]+'" min="'+d[2]+'" max="'+d[3]+'" step="'+d[4]+'">';$(d[5]).appendChild(w);
+ var inp=w.querySelector("input");ctl[d[0]]=inp;inp.addEventListener("input",function(){ST[d[0]]=+inp.value;calc()})});
+function row(n,v,mx,o){return '<div class="r'+(o?" o":"")+'"><span>'+n+'</span><em><i style="width:'+Math.max(0,Math.min(100,100*v/mx)).toFixed(1)+'%"></i></em><b>'+Math.round(v)+'</b></div>'}
+function calc(){
+ DEF.forEach(function(d){var k=d[0];ctl[k].value=ST[k];$("o_"+k).textContent=k==="popU"?fmt(Math.round(ST[k])):(k==="ind"?(+ST[k]).toFixed(1):Math.round(ST[k]))});
+ var uosa=ST.popU*ST.gU/1e6/(1-II)+ST.ind,brd=ST.bru+uosa,inf=brd+ST.occ+ST.oth+PREC,gr=POPG*ST.gG/1e6/(1-NRW),dam=inf-gr-EVAP,mx=Math.max(inf,gr+EVAP+Math.max(dam,0),1);
+ $("inn").innerHTML="<h3>Inflows to the reservoir</h3>"+row("Bull Run (below wastewater plant)",brd,mx)+row("&nbsp;&nbsp;of which reclaimed water",uosa,mx)+row("Occoquan River",ST.occ,mx)+row("Other streams",ST.oth,mx)+row("Precipitation",PREC,mx)+row("Total inflow",inf,mx);
+ $("outt").innerHTML="<h3>Outflows</h3>"+row("Drinking water plant",gr,mx,1)+row("Evaporation",EVAP,mx,1)+row("Dam outflow to the Potomac",Math.max(dam,0),mx,1)+row("Total outflow",gr+EVAP+Math.max(dam,0),mx,1);
+ var cap=(72-ST.ind)*(1-II)/ST.gU*1e6;
+ $("kp").innerHTML='<div><b>'+Math.round(100*uosa/inf)+'%</b>of reservoir inflow is reclaimed water</div><div><b>'+Math.round(100*gr/inf)+'%</b>of inflow is withdrawn for drinking water</div><div><b>'+Math.round(brd)+' MGD</b>average in Bull Run below the wastewater plant (mussel minimum: 10 MGD)</div><div><b>'+fmt(Math.round(cap/100)*100)+'</b>people in the service area to reach the 72 MGD cap at these settings</div>';
+ $("warn").textContent=dam<0?"Average withdrawals and evaporation exceed average inflow. The reservoir would draw down, and the full model shows how far and when.":"";
+ /* quality layer: well-mixed steady state, transit time scales inversely with inflow */
+ var ws=ST.bru+ST.occ+ST.oth,mass=ws*(6.4+ST.droad)+uosa*ST.crec,C1=mass/inf,C0=(WS0*(6.4+ST.droad)+U0m*ST.crec)/IN0,T=20*IN0/inf,t50=tq(2,T,.5);
+ $("qk").innerHTML='<div><b>'+C1.toFixed(1)+' mg/L</b>sodium at the intake, steady state (default flows: '+C0.toFixed(1)+')</div><div><b>'+Math.round(100*uosa*ST.crec/mass)+'%</b>of the sodium mass comes from reclaimed water</div><div><b>'+Math.round(T)+' days</b>average transit time through the reservoir</div><div><b>'+Math.round(t50)+' days</b>for half of the change to reach the intake</div>';
+ var xs=[],a=[],b=[];for(var t=0;t<=180;t+=2){xs.push(t);a.push(C0);b.push(C0+(C1-C0)*erl(2,T,t)[1])}
+ var lo=Math.min(C0,C1),hi=Math.max(C0,C1),pad=Math.max(1,(hi-lo)*.25),y0=Math.max(0,lo-pad),y1=hi+pad;
+ chart("c3",520,190,xs,[{y:a,col:GR,dash:1},{y:b,col:AC}],{x0:0,x1:180,y0:y0,y1:y1,xt:[0,60,120,180],yt:[[y0,y0.toFixed(0)],[C0,C0.toFixed(1)],[y1,y1.toFixed(0)]].concat(Math.abs(C1-C0)>.6?[[C1,C1.toFixed(1)]]:[])});if(Math.abs(C1-C0)<.05){$("c3").innerHTML+='<text x="280" y="34" text-anchor="middle">No change yet: try the drought example above</text>'}}
+var P={reset:function(){ST=JSON.parse(JSON.stringify(D0))},
+drought:function(){P.reset();ST.bru=35;ST.occ=65;ST.oth=27},
+nouosa:function(){P.drought();ST.popU=0;ST.ind=0},
+pop500:function(){P.reset();ST.popU=500000},
+cap:function(){P.reset();ST.popU=Math.round((72-ST.ind)*(1-II)/ST.gU*1e6)}};
+Array.prototype.forEach.call(document.querySelectorAll("[data-p]"),function(b){b.addEventListener("click",function(){P[b.dataset.p]();calc()})});
+calc();
+})();
+</script>
+</body>
+</html>

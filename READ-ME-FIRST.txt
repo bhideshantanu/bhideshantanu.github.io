@@ -1,0 +1,10 @@
+Shantanu Bhide website - files to upload to GitHub
+
+Upload these four items to the repo bhideshantanu.github.io:
+  1. index.html
+  2. occoquan-tool.html
+  3. publications.html
+  4. the img folder (with its 3 photos inside)
+
+Unzip this file first. GitHub cannot unpack a zip for you.
+Then: repo page > Add file > Upload files > drag the three .html files AND the img folder in > Commit changes.
