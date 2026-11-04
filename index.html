@@ -27,7 +27,10 @@ h1,h2{font-family:Georgia,"Times New Roman",serif;line-height:1.2;margin:0}
 h1{font-size:clamp(34px,6vw,50px);margin-bottom:12px}
 h2{font-size:28px;margin-bottom:8px}
 section+section{border-top:1px solid var(--bd)}
+.htop{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:center}
 .ht{max-width:780px}
+.hp{margin:0;width:clamp(170px,22vw,240px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:1px solid var(--bd);box-shadow:0 0 0 6px var(--sf)}
+.hp img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 .hstrip{margin-top:36px;display:grid;grid-template-columns:1.35fr 28px 1fr 28px 1.35fr;align-items:start;container-type:inline-size}
 .htile{margin:0;min-width:0}
 .hv{height:250px;height:calc((100cqw - 56px) * .2736);min-height:170px;border:1px solid var(--bd);border-radius:10px;overflow:hidden;background:var(--sf)}
@@ -40,6 +43,8 @@ section+section{border-top:1px solid var(--bd)}
 .htile figcaption{margin-top:10px;font-size:14px;line-height:1.5;color:var(--mu)}
 .hst{display:block;font-family:Georgia,serif;font-size:19px;font-weight:600;color:var(--tx);margin-bottom:2px}
 @media(max-width:760px){
+.htop{grid-template-columns:1fr;gap:22px}
+.hp{order:-1;width:120px}
 .hstrip{grid-template-columns:1fr}
 .hv{height:auto;aspect-ratio:4/3;min-height:0}
 .har{height:34px;min-height:0}
@@ -75,12 +80,12 @@ footer{padding:30px 20px;text-align:center;color:var(--mu);font-size:14px;border
 <nav><div><a href="#problems">Problems I solve</a><a href="#evidence">Why trust the work</a><a href="#work">Selected work</a><a href="#collaborate">Working together</a><a href="#background">Background</a><a href="#publications">Publications</a><a href="#contact">Contact</a></div></nav>
 
 <section><div class="w">
-<div class="ht">
+<div class="htop"><div class="ht">
 <h1>Evidence for water decisions that carry real risk</h1>
 <p class="sub">Shantanu Bhide, PhD, EIT. Water resources engineer and researcher.</p>
 <p class="lead">I build models and decision tools that show utilities, agencies and investors how water quality, flood and dam risk, and infrastructure choices will play out over decades, before the money is spent.</p>
 <a class="btn p" href="#problems">See the problems I solve</a><a class="btn" href="#contact">Get in touch</a>
-</div>
+</div><figure class="hp"><img src="img/headshot.jpg" width="520" height="520" alt="Portrait of Shantanu Bhide" fetchpriority="high"></figure></div>
 <div class="hstrip">
 <figure class="htile"><div class="hv two"><img src="img/field-laundry.jpg" width="520" height="780" alt="Shantanu Bhide setting up an automatic water sampler beside industrial washing machines"><img src="img/field-station.jpg" width="520" height="780" alt="Shantanu Bhide and two colleagues setting up an automatic water sampler in the field"></div><figcaption><span class="hst">Measure</span>Sampling sources in the field.</figcaption></figure>
 <div class="har" aria-hidden="true"></div>
