@@ -8,6 +8,10 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Shantanu Bhide | Evidence for water decisions">
 <meta property="og:description" content="Models and decision tools that show how water quality, flood and dam risk, and infrastructure choices play out over decades.">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script data-goatcounter="https://shantanubhide.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f8f9;--sf:#fff;--tx:#16262e;--mu:#51636d;--ac:#0d6b80;--hi:#b9651b;--bd:#d3dfe4}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1b22;--sf:#12262f;--tx:#e6eff2;--mu:#93aab5;--ac:#5ec2d8;--hi:#e0a15a;--bd:#24404c}}
@@ -20,6 +24,8 @@ nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(-
 nav div{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;gap:22px;overflow-x:auto;white-space:nowrap}
 nav a{padding:15px 0;color:var(--mu);text-decoration:none;font-size:15px}
 nav a:hover{color:var(--ac)}
+nav a.home{display:flex;align-items:center;gap:9px;color:var(--tx);font-weight:600}
+nav a.home img{width:22px;height:22px;border-radius:5px;display:block}
 a{color:var(--ac)}
 a:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
 .w{max-width:1040px;margin:0 auto;padding:56px 20px}
@@ -73,11 +79,26 @@ section+section{border-top:1px solid var(--bd)}
 svg{width:100%;height:auto}
 svg text{fill:var(--mu);font-size:12px}
 .cap{font-size:14px;color:var(--mu);margin:6px 0 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.pc{display:flex;flex-direction:column;background:var(--sf);border:1px solid var(--bd);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--tx);transition:border-color .15s,transform .15s}
+.pc:hover{border-color:var(--ac);transform:translateY(-2px)}
+.pc:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+.pc picture{display:block;border-bottom:1px solid var(--bd)}
+.pc img{display:block;width:100%;height:auto;aspect-ratio:8/5;object-fit:cover}
+.pcb{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pcb h3{font-family:Georgia,serif;font-size:22px;line-height:1.2;margin:0}
+.pcb p{margin:0;color:var(--mu);font-size:15px}
+.st{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--mu)}
+.st::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ac)}
+.st.live::before{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ac) 45%,transparent)}50%{box-shadow:0 0 0 5px transparent}}
+@media(prefers-reduced-motion:reduce){.st.live::before{animation:none}.pc,.pc:hover{transition:none;transform:none}}
+.go{margin-top:auto;padding-top:8px;color:var(--ac);font-weight:600;font-size:15px}
 footer{padding:30px 20px;text-align:center;color:var(--mu);font-size:14px;border-top:1px solid var(--bd)}
 </style>
 </head>
 <body>
-<nav><div><a href="#problems">Problems I solve</a><a href="#evidence">Why trust the work</a><a href="#work">Selected work</a><a href="#collaborate">Working together</a><a href="#background">Background</a><a href="#publications">Publications</a><a href="#contact">Contact</a></div></nav>
+<nav><div><a class="home" href="/" aria-label="Shantanu Bhide, home"><img src="/favicon.svg" alt="" width="22" height="22"></a><a href="#open-water">Open Water</a><a href="#problems">Problems I solve</a><a href="#evidence">Why trust the work</a><a href="#work">Selected work</a><a href="#collaborate">Working together</a><a href="#background">Background</a><a href="#publications">Publications</a><a href="#contact">Contact</a></div></nav>
 
 <section><div class="w">
 <div class="htop"><div class="ht">
@@ -100,6 +121,17 @@ footer{padding:30px 20px;text-align:center;color:var(--mu);font-size:14px;border
 </svg></div><figcaption><span class="hst">Model</span>Tracing how long water, and what it carries, takes to move through a system. <a href="occoquan-tool.html#key">Move the sliders yourself.</a></figcaption></figure>
 <div class="har" aria-hidden="true"></div>
 <figure class="htile"><div class="hv"><img src="img/workshop.jpg" width="960" height="720" alt="Shantanu Bhide presenting a systems model on a screen to a workshop in a meeting room"></div><figcaption><span class="hst">Decide</span>Working through the model with stakeholders.</figcaption></figure>
+</div>
+</div></section>
+
+<section id="open-water" class="ow"><div class="w">
+<h2>Open Water</h2>
+<p class="intro">Live maps I build on my own time from public data, for anyone curious about the water around them. Free to explore and share.</p>
+<div class="cards">
+<a class="pc" href="/salt-tracker/"><picture><source srcset="img/salt-tracker-dark.webp" media="(prefers-color-scheme: dark)"><img src="img/salt-tracker.webp" width="800" height="500" loading="lazy" alt="Map of U.S. stream sensors on December 15, 2025, with the saltiest streams after a winter storm shown as large dark blue dots"></picture>
+<div class="pcb"><span class="st live">Live · updated every morning</span><h3>Salt Season Tracker</h3><p>Which U.S. streams run salty after snow and road salting, from USGS sensors. Replay last winter, zoom to your state and see the biggest salt storms.</p><span class="go">Open the tracker →</span></div></a>
+<a class="pc" href="/dams/"><picture><source srcset="img/dams-dark.webp" media="(prefers-color-scheme: dark)"><img src="img/dams.webp" width="800" height="500" loading="lazy" alt="Map of more than 90,000 U.S. dams, colored by age"></picture>
+<div class="pcb"><span class="st">Updated monthly</span><h3>America’s Dams</h3><p>Every dam in the National Inventory of Dams: when it was built, how old the nation’s dams are getting, which ones are high-hazard, and the ones that have been removed.</p><span class="go">Explore the dams →</span></div></a>
 </div>
 </div></section>
 
